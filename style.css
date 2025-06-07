@@ -272,3 +272,33 @@ select:focus {
 html, body {
     overflow-x: hidden;
 } 
+/* Make the column name input wider, allow for longer/multi-word names, and improve usability */
+.column-item input.column-name {
+    flex: 2 1 200px;         /* Allow the input to grow and take up more space */
+    min-width: 120px;        /* Minimum width for desktop */
+    max-width: 100%;         /* Prevent overflow */
+    font-size: 1.1rem;       /* Larger, more readable text */
+    padding: 0.7rem 1rem;    /* Comfortable padding */
+    border-radius: 10px;
+    border: 2px solid #b8c1ec;
+    background: #f7f7fa;
+    margin-right: 0.5rem;
+}
+
+/* Responsive adjustments for tablets and small screens */
+@media (max-width: 800px) {
+    .column-item input.column-name {
+        min-width: 80px;     /* Smaller minimum width for tablets */
+        font-size: 1rem;
+        padding: 0.6rem 0.7rem;
+    }
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 500px) {
+    .column-item input.column-name {
+        min-width: 60px;     /* Even smaller minimum width for mobile */
+        font-size: 0.95rem;
+        padding: 0.5rem 0.5rem;
+    }
+}
