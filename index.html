@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Script Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Script Generator</h1>
+        
+        <div class="button-container">
+            <button id="createScriptBtn" class="main-btn">Create Script</button>
+            <button id="createStoredProcBtn" class="main-btn">Create Stored Procedure</button>
+        </div>
+
+        <div id="scriptGenerator" class="generator-section hidden">
+            <h2>Script Generator</h2>
+            
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="tableName">Table Name:</label>
+                    <input type="text" id="tableName" placeholder="e.g., employee">
+                </div>
+
+                <div class="columns-section">
+                    <h3>Columns</h3>
+                    <div id="columnsList">
+                        <!-- Columns will be added here dynamically -->
+                    </div>
+                    <button id="addColumnBtn" class="action-btn">Add Column</button>
+                </div>
+
+                <div class="values-section">
+                    <h3>Values</h3>
+                    <textarea id="valuesInput" placeholder="Enter values separated by commas"></textarea>
+                </div>
+            </div>
+
+            <div class="keywords-section">
+                <h3>SQL Keywords</h3>
+                <div class="keyword-buttons">
+                    <button class="keyword-btn" data-keyword="PRIMARY KEY">Primary Key</button>
+                    <button class="keyword-btn" data-keyword="FOREIGN KEY">Foreign Key</button>
+                    <button class="keyword-btn" data-keyword="NOT NULL">Not Null</button>
+                    <button class="keyword-btn" data-keyword="UNIQUE">Unique</button>
+                    <button class="keyword-btn" data-keyword="DEFAULT">Default</button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <h3>Generated Script</h3>
+                <pre id="generatedScript"></pre>
+                <button id="copyScriptBtn" class="action-btn">Copy Script</button>
+            </div>
+        </div>
+
+        <div id="storedProcGenerator" class="generator-section hidden">
+            <h2>Stored Procedure Generator</h2>
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="procName">Procedure Name:</label>
+                    <input type="text" id="procName" placeholder="e.g., usp_AddEmployee">
+                </div>
+                <div class="parameters-section">
+                    <h3>Parameters</h3>
+                    <div id="paramsList"></div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <input type="text" id="paramNameInput" placeholder="Parameter name">
+                        <select id="paramTypeInput">
+                            <option value="INT">INT</option>
+                            <option value="VARCHAR(255)">VARCHAR(255)</option>
+                            <option value="DATE">DATE</option>
+                            <option value="DECIMAL(10,2)">DECIMAL(10,2)</option>
+                            <option value="BIT">BIT</option>
+                        </select>
+                        <button id="addParamBtn" class="action-btn">Add Parameter</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sqlOperation">SQL Operation:</label>
+                    <select id="sqlOperation">
+                        <option value="SELECT">SELECT</option>
+                        <option value="INSERT">INSERT</option>
+                        <option value="UPDATE">UPDATE</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="procBody">SQL Body:</label>
+                    <textarea id="procBody" placeholder="SQL statement(s) here..."></textarea>
+                </div>
+            </div>
+            <div class="quick-actions-section">
+                <h3>Quick Actions</h3>
+                <div class="keyword-buttons">
+                    <button class="proc-action-btn" data-action="BEGIN TRANSACTION">BEGIN TRAN</button>
+                    <button class="proc-action-btn" data-action="COMMIT">COMMIT</button>
+                    <button class="proc-action-btn" data-action="ROLLBACK">ROLLBACK</button>
+                    <button class="proc-action-btn" data-action="TRY CATCH">TRY/CATCH</button>
+                    <button class="proc-action-btn" data-action="BEST PRACTICE">Best Practice Template</button>
+                </div>
+            </div>
+            <div class="output-section">
+                <button id="generateProcBtn" class="main-btn">Generate Stored Procedure</button>
+                <h3>Generated Stored Procedure</h3>
+                <pre id="generatedProc"></pre>
+                <button id="copyProcBtn" class="action-btn">Copy Script</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
